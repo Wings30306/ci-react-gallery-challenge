@@ -36,15 +36,18 @@ export class Content extends Component {
     render() {
         return (
             <div className={css.Content}>
-                <h1 className={css.TitleBar}>My Posts</h1>
-                <h4>Number of posts: {this.state.posts.length}</h4>
-                <input 
-                    type="search" 
-                    id="searchInput" 
-                    name="searchInput"
-                    placeholder="Search by title"
-                    onChange={this.handleChange}
-                />
+                <div className={css.TitleBar}>
+                    My Posts
+                    <h4>Number of posts: {this.state.posts.length}</h4>
+                    <input 
+                        type="search" 
+                        id="searchInput" 
+                        name="searchInput"
+                        placeholder="Search by title"
+                        onChange={this.handleChange}
+                    />
+                </div>
+                
                 <div className={css.SearchResults}>
                     {this.state.isLoaded ? (
                         this.state.posts.map(

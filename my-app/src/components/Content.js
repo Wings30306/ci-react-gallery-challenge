@@ -10,6 +10,7 @@ export class Content extends Component {
         console.log("Constructor triggered")
         this.state = {
             isLoaded: false,
+            posts: []
         }
     }
 
@@ -17,17 +18,42 @@ export class Content extends Component {
         setTimeout(()=>{
             this.setState({
                 isLoaded: true,
+                posts: savedPosts
             })
         }, 2000)
+    }
+
+    handleChange = (event) => {
+        let name = event.target.value;
+        const filteredPosts = savedPosts.filter(
+            post => post.title.toLowerCase().includes(name.toLowerCase())
+            )
+        this.setState({
+            posts: filteredPosts
+        })
     }
 
     render() {
         return (
             <div className={css.Content}>
                 <h1 className={css.TitleBar}>My Posts</h1>
+                <h4>Number of posts: {this.state.posts.length}</h4>
+                <input 
+                    type="search" 
+                    id="searchInput" 
+                    name="searchInput"
+                    placeholder="Search by title"
+                    onChange={this.handleChange}
+                />
                 <div className={css.SearchResults}>
                     {this.state.isLoaded ? (
-                        savedPosts.map(post => <PostItem className={css.SearchItem} key={post.title} post={post} />
+                        this.state.posts.map(
+                            post => (
+                            <PostItem 
+                                className={css.SearchItem} 
+                                key={post.title} 
+                                post={post} />
+                            )
                         )
                     ) : (
                         <Loader />

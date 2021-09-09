@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import axios from "axios"
 import API_KEY from '../secrets'
-import { savedPosts } from "../posts.json"
 import css from "./css/Content.module.css"
 import Loader from './Loader'
 import PostItemAPI from './PostItemAPI'
@@ -12,7 +11,8 @@ export class ContentClassAPI extends Component {
         console.log("Constructor triggered")
         this.state = {
             isLoaded: false,
-            posts: []
+            posts: [],
+            savedPosts: []
         }
     }
 
@@ -28,13 +28,14 @@ export class ContentClassAPI extends Component {
         console.log(fetchedPosts)
         this.setState({ 
             isLoaded: true,
+            savedPosts: fetchedPosts,
             posts: fetchedPosts})
     }
 
     handleChange = (event) => {
         let name = event.target.value;
-        const filteredPosts = savedPosts.filter(
-            post => post.title.toLowerCase().includes(name.toLowerCase())
+        const filteredPosts = this.state.savedPosts.filter(
+            post => post.user.toLowerCase().includes(name.toLowerCase())
             )
         
         this.setState({

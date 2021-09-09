@@ -2,9 +2,10 @@ import css from './App.module.css';
 import Sidebar from './components/Sidebar';
 // import NavBarSimple from './components/NavBarSimple';
 import NavBarForm from './components/NavBarForm';
+import ContentHooksAPI from './components/ContentHooksAPI';
 // import Content from './components/Content';
 // import ContentHooks from './components/ContentHooks';
-import ContentClassAPI from './components/ContentClassAPI';
+// import ContentClassAPI from './components/ContentClassAPI';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
       }
       <NavBarForm />
       <Sidebar />
-      <ContentClassAPI />
+      <ContentHooksAPI />
     </div>
   );
 }
